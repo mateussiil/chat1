@@ -5,25 +5,27 @@ const inputField = document.querySelector(".message_form__input");
 const messageForm = document.querySelector(".message_form");
 const messageBox = document.querySelector(".messages__history");
 const fallback = document.querySelector(".fallback");
+const nickInput = document.querySelector(".nick_input");
 
-let userName = "";
-
-
+let nickName = "";
 
 const newUserConnected = (user) => {
-  userName = user || `User${Math.floor(Math.random() * 1000000)}`;
-  socket.emit("new user", userName);
-  addToUsersBox(userName);
+  nickName=prompt("Informe como vc quer se indentificar, caso nao deseje aperte ENTER:" );
+  if(!nickName || nickName==""){
+    nickName = user || `User${Math.floor(Math.random() * 1000000)}`;
+  }
+  socket.emit("new user", nickName);
+  addToUsersBox(nickName);
 };
 
-const addToUsersBox = (userName) => {
-  if (!!document.querySelector(`.${userName}-userlist`)) {
+const addToUsersBox = (nickName) => {
+  if (!!document.querySelector(`.${nickName}-userlist`)) {
     return;
   }
 
   const userBox = `
-    <div class="chat_ib ${userName}-userlist">
-      <h5>${userName}</h5>
+    <div class="chat_ib ${nickName}-userlist">
+      <h5>${nickName}</h5>
     </div>
   `;
   inboxPeople.innerHTML += userBox;
@@ -57,7 +59,7 @@ const addNewMessage = ({ user, message }) => {
     </div>
   </div>`;
 
-  messageBox.innerHTML += user === userName ? myMsg : receivedMsg;
+  messageBox.innerHTML += user === nickName ? myMsg : receivedMsg;
   scroll()
 };
 
@@ -76,7 +78,7 @@ messageForm.addEventListener("submit", (e) => {
 
   socket.emit("chat message", {
     message: inputField.value,
-    nick: userName,
+    nick: nickName,
   });
 
   inputField.value = "";
@@ -85,7 +87,7 @@ messageForm.addEventListener("submit", (e) => {
 inputField.addEventListener("keyup", () => {
   socket.emit("typing", {
     isTyping: inputField.value.length > 0,
-    nick: userName,
+    nick: nickName,
   });
 });
 
@@ -94,8 +96,8 @@ socket.on("new user", function (data) {
   data.map((user) => addToUsersBox(user));
 });
 
-socket.on("user disconnected", function (userName) {
-  document.querySelector(`.${userName}-userlist`).remove();
+socket.on("user disconnected", function (nickName) {
+  document.querySelector(`.${nickName}-userlist`).remove();
 });
 
 socket.on("chat message", function (data) {
