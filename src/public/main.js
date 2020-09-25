@@ -8,12 +8,20 @@ const fallback = document.querySelector(".fallback");
 const nickInput = document.querySelector(".nick_input");
 
 let nickName = "";
+let usersOnline =[];
 
 const newUserConnected = (user) => {
   nickName=prompt("Informe como vc quer se indentificar, caso nao deseje aperte ENTER:" );
-  if(!nickName || nickName==""){
+
+  if(!nickName || nickName== ""){
     nickName = user || `User${Math.floor(Math.random() * 1000000)}`;
+  }else{
+    console.log(nickName)
+    nickName = nickName.slice() + `${Math.floor(Math.random() * 100)}`;
   }
+
+  console.log(nickName)
+
   socket.emit("new user", nickName);
   addToUsersBox(nickName);
 };
@@ -22,7 +30,6 @@ const addToUsersBox = (nickName) => {
   if (!!document.querySelector(`.${nickName}-userlist`)) {
     return;
   }
-
   const userBox = `
     <div class="chat_ib ${nickName}-userlist">
       <h5>${nickName}</h5>
