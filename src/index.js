@@ -5,8 +5,8 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 
-const server = app.listen(process.env.PORT, function () {
-  console.log(`http://localhost:${5000}`);
+const server = app.listen(process.env.PORT || 3333, function () {
+  console.log(`http://localhost:${3333}`);
 });
 
 app.use(express.static(__dirname + '/public'));

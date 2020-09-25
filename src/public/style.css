@@ -1,5 +1,14 @@
+@media only screen and (max-device-width: 1000px) {
+  
+}
+
+body{
+  padding: 0px;
+  margin:0px;
+  width: 100%;
+}
+
 .container{
-  padding: 2em 25em 2em;
   display: flex;
   flex-direction: column;
 }
@@ -12,6 +21,7 @@
 .inbox__people{
   width: 30vw;
   height: 70vh;
+  overflow-x: hidden;
   background-color: rgba(211, 215, 216, 0.5);
   padding-left: 10px;
 }
@@ -26,15 +36,18 @@ h5{
 }
 
 .inbox__messages{
-  width: 80vw;
+  width: 65vw;
   height: 70vh;
+  overflow-y: visible;
   background-color: rgba(149, 165, 166,0.5);
 }
+
 .inbox__messages{
   display: flex;
   flex-direction: column;
   position: relative;
 }
+
 .messages__history{
   overflow-x: hidden;
   position: absolute;
@@ -102,7 +115,7 @@ form{
 }
 
 input{
-  width: 92%;
+  width: 90%;
   height: 40px;
   padding-left: 20px;
 }
