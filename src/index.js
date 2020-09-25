@@ -5,7 +5,7 @@ const cors = require('cors');
 const app = express();
 app.use(express.json());
 
-const server = app.listen(5000, function () {
+const server = app.listen(process.env.PORT, function () {
   console.log(`http://localhost:${5000}`);
 });
 
