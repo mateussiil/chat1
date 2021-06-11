@@ -8,8 +8,10 @@
     "express": "^4.17.1",
     "socket.io": "^2.3.0"
   },
+  "ext": "js css",
+
   "scripts": {
-    "start": "node src/index.js",
+    "start": "nodemon src/index.js",
     "dev": "nodemon src/index.js"
   },
   "devDependencies": {

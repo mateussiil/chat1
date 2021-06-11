@@ -1,34 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Socket.io simple chat</title>
-    <link rel="stylesheet" href="./style.css" />
-  </head>
-  <body >
-    <div class="container">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Socket.io simple chat</title>
+  <link rel="stylesheet" href="./styles/reset.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/button-float.css" />
+</head>
+
+<body>
+  <div class="main">
+    <div class="backgroud_1"></div>
+    <div class="backgroud_2"></div>
+    <div class="container card">
       <div class="inbox">
         <div class="inbox__people">
           <h4>Usuarios ativos</h4>
         </div>
-        <div class="inbox__messages" >
-          <div class="messages__history"></div>
-          <div class="fallback"></div>
-        </div>
       </div>
-
+      <div class="inbox__messages">
+        <div class="messages__history"></div>
+        <div class="fallback"></div>
+      </div>
       <form class="message_form">
+        <input class="other_options__check" id="other_options__check" type="checkbox"/>
+        <label class="other_options__label" for="other_options__check" type="label">
+          <img src="./assets/anexe-o-simbolo-da-interface-da-ferramenta-de-clipe-de-papel-diagonal.svg">
+        </label>
+        <ul class="fab-options">
+          <li>
+            
+            <div style="background: linear-gradient(to top, #0e20e6 50%,  #1623b3 50%);" class="fab-icon-holder">
+              <img src="./assets/Document.svg">
+            </div>
+            <span class="fab-label">Documento</span>
+          </li>
+          <li>
+            <div style="background: linear-gradient(to top, #d62710 50%,  rgb(119, 18, 15) 50%);" class="fab-icon-holder">
+              <img src="./assets/image.svg">
+            </div>
+            <span class="fab-label">Fotos e videos</span>
+          </li>
+          <li>
+            <div style="background: linear-gradient(to top, #14ad47 50%,  #1a7e3b 50%);" class="fab-icon-holder">
+              <img src="./assets/image.svg">
+            </div>
+            <span class="fab-label">Live Chat</span>
+          </li>
+        </ul>
         <input type="text" class="message_form__input" placeholder="Type a message" />
         <button class="message_form__button" type="submit">
           Enter
         </button>
       </form>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
-    <script src="main.js"></script>
+  </div>
 
 
-  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="main.js"></script>
+</body>
+
 </html>

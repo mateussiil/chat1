@@ -3,27 +3,78 @@
 }
 
 body{
-  padding: 0px;
-  margin:0px;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
   width: 100%;
 }
 
+.card{
+  box-shadow: 2px 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.backgroud_1{
+  width: 100%;
+  height: 20%;
+  background: #3E9789;
+  z-index: 1;
+}
+
+.backgroud_2{
+  width: 100%;
+  height: 80%;
+  background: #D9DBD4;
+  z-index: 1;
+}
+
 .container{
-  display: flex;
-  flex-direction: column;
+  z-index: 3;
+  background: white;
+  height: 80%;
+  width: 80%;
+  position: absolute;
+  border: 1px solid rgb(180, 189, 189);
 }
 
 .inbox{
+  position: absolute;
+  overflow-x: hidden;
+  background: white;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+}
+
+.inbox__messages{
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: calc(100% - 50px);
+  width: 70%;
+}
+
+.message_form{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 50px;
+  width: 70%;
   display: flex;
-  flex-direction: row;
+  align-items: center;
 }
 
 .inbox__people{
-  width: 30vw;
-  height: 70vh;
+  height: 100%;
   overflow-x: hidden;
   background-color: rgba(211, 215, 216, 0.5);
-  padding-left: 10px;
 }
 
 h4{
@@ -36,8 +87,6 @@ h5{
 }
 
 .inbox__messages{
-  width: 65vw;
-  height: 70vh;
   overflow-y: visible;
   background-color: rgba(149, 165, 166,0.5);
 }
@@ -45,16 +94,16 @@ h5{
 .inbox__messages{
   display: flex;
   flex-direction: column;
-  position: relative;
 }
 
 .messages__history{
   overflow-x: hidden;
   position: absolute;
-  height: 62vh;
+  height: calc(100% - 2*10px);
   padding:10px;
-  width:100%;
+  width: calc(100% - 2*10px);
 }
+
 .message__info{
   display: flex;
   flex-direction: row;
@@ -109,22 +158,51 @@ h5{
   padding-left: 20px;
 }
 
-form{
-  padding-top: 10px;
-  width: 100%;
-}
-
 .message_form__input{
+  padding: 10px;
+  height: calc(100% - 2*10px);
   width: 90%;
-  height: 40px;
-  padding-left: 20px;
 }
 
-button{
+.other_options__check{
+  display: none;
+}
+
+.other_options__label{
+  height: 50px;
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.other_options__label > img{
+  height: 80%;
+  width:  80%;
+  transition: 0.3s;
+}
+
+.other_options__label > img:hover{
+  transform: scale(1.2)
+}
+
+.message_form__button{
   background-color: rgba(22, 160, 133,1.0);
-  height: 40px;
+  height: 50px;
+  width: 50px;
   border: none;
   color: white;
   font-weight: bolder;
 }
 
+
+input,
+button{
+  border: none;
+  border: 1px solid rgb(180, 189, 189)
+}
+
+.other_options__label,
+button{
+  cursor: pointer;
+}
