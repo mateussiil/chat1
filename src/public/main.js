@@ -8,19 +8,19 @@ const fallback = document.querySelector(".fallback");
 const nickInput = document.querySelector(".nick_input");
 
 let nickName = "";
-let usersOnline =[];
+let usersOnline = [];
 
 const newUserConnected = (user) => {
-  nickName=prompt("Informe como vc quer se indentificar, caso nao deseje aperte ENTER:" );
+  nickName = prompt(
+    "Informe como vc quer se indentificar, caso nao deseje aperte ENTER:"
+  );
 
-  if(!nickName || nickName== ""){
+  if (!nickName || nickName == "") {
     nickName = user || `User${Math.floor(Math.random() * 1000000)}`;
-  }else{
-    console.log(nickName)
+  } else {
+    console.log(nickName);
     nickName = nickName.slice() + `${Math.floor(Math.random() * 100)}`;
   }
-
-  console.log(nickName)
 
   socket.emit("new user", nickName);
   addToUsersBox(nickName);
@@ -40,10 +40,12 @@ const addToUsersBox = (nickName) => {
 
 // new user is created so we generate nickname and emit event
 
-
 const addNewMessage = ({ user, message }) => {
   const time = new Date();
-  const formattedTime = time.toLocaleString("pt-PT", { hour: "numeric", minute: "numeric" });
+  const formattedTime = time.toLocaleString("pt-PT", {
+    hour: "numeric",
+    minute: "numeric",
+  });
 
   const receivedMsg = `
   <div class="incoming__message">
@@ -67,12 +69,12 @@ const addNewMessage = ({ user, message }) => {
   </div>`;
 
   messageBox.innerHTML += user === nickName ? myMsg : receivedMsg;
-  scroll()
+
+  scroll();
 };
 
 function scroll() {
-  var objScrDiv = document.getElementsByClassName("inbox__messages");
-  objScrDiv.scrollTop = objScrDiv.scrollHeight;
+  messageBox.scrollBy(0, messageBox.getBoundingClientRect().height);
 }
 
 newUserConnected();
@@ -91,7 +93,7 @@ messageForm.addEventListener("submit", (e) => {
   inputField.value = "";
 });
 
-inputField.addEventListener("keyup", () => {
+inputField.addEventListener("keydown", () => {
   socket.emit("typing", {
     isTyping: inputField.value.length > 0,
     nick: nickName,
@@ -115,10 +117,13 @@ socket.on("chat message", function (data) {
 socket.on("typing", function (data) {
   const { isTyping, nick } = data;
 
-  if (!isTyping) {
-    fallback.innerHTML = "";
-    return;
-  }
+  endAndStartTimer(() => {fallback.innerHTML = ""})
 
   fallback.innerHTML = `<p>${nick} esta digitando...</p>`;
 });
+
+var timer;
+function endAndStartTimer(shouldDo) {
+  window.clearTimeout(timer);
+  timer = window.setTimeout(shouldDo ,1000); 
+}
