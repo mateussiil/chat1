@@ -153,7 +153,7 @@ h5{
 
 .fallback{
   position: absolute;
-  bottom: -10px;
+  bottom: 5px;
   padding-bottom: 0px;
   padding-left: 20px;
 }
